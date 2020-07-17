@@ -20,8 +20,12 @@ export default function UploadScreen(props) {
 }
 UploadScreen.navigationOptions = {
     headerTitle: 'Sharp Shooter',
+    headerStyle: {
+      backgroundColor: '#000'
+  },
+  headerTintColor: '#fff',
     safeAreaInsets: { top: 50 },
-};
+  };
 const styles = StyleSheet.create({
   container: {
     marginLeft: 0,

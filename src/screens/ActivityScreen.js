@@ -20,6 +20,10 @@ export default function ActivityScreen(props) {
 }
 ActivityScreen.navigationOptions = {
     headerTitle: 'Sharp Shooter',
+    headerStyle: {
+      backgroundColor: '#000'
+    },
+    headerTintColor: '#fff',
     safeAreaInsets: { top: 50 },
 };
 const styles = StyleSheet.create({

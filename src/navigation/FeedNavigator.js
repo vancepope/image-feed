@@ -104,6 +104,6 @@ const tabNavigator = createBottomTabNavigator({
   }
 });
 
-tabNavigator.path = '';
+tabNavigator.path = 'Tabs';
 
 export default tabNavigator;

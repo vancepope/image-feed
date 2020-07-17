@@ -1,4 +1,5 @@
 import React, { useState, createContext } from 'react';
+import firebase from 'firebase';
 const AppContext = createContext([{}, () => {}]);
 const AppProvider = (props) => {
 	const [state, setState] = useState({
@@ -6,8 +7,11 @@ const AppProvider = (props) => {
         loading: false,
         error: false,
         focused: false,
-
-
+        email: '',
+        password: '',
+        isAuthenticated: false,
+        user: {},
+        userPromiseData: {},
   });
   return (
     <AppContext.Provider value={[state, setState]}>

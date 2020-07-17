@@ -27,6 +27,10 @@ export default function FeedScreen(props) {
 }
 FeedScreen.navigationOptions = {
   headerTitle: 'Sharp Shooter',
+  headerStyle: {
+    backgroundColor: '#000'
+  },
+  headerTintColor: '#fff',
   safeAreaInsets: { top: 50 },
 };
 const styles = StyleSheet.create({

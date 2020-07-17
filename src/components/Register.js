@@ -2,10 +2,10 @@ import React, { useContext } from 'react';
 import { StyleSheet, View, ScrollView } from 'react-native';
 import { AppContext } from '../context/AppContext';
 
-export default function Home() {
+export default function Register() {
     const [state, setContext] = useContext(AppContext);
     return (
-        <View style={styles.container}>
+        <View style={styles.appContainer}>
         <ScrollView style={styles.timerList}>
         </ScrollView>
         </View>
@@ -13,9 +13,8 @@ export default function Home() {
 }
 
 const styles = StyleSheet.create({ 
-  container: {
+  appContainer: {
     flex: 1, 
-    flexDirection: 'row', 
   },
   titleContainer: {
     paddingTop: 35, 
@@ -29,5 +28,8 @@ const styles = StyleSheet.create({
     fontWeight: 'bold', 
     textAlign: 'center',
     color: '#fff'
+  },
+  timerList: {
+    paddingBottom: 15,
   },
 });

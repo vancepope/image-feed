@@ -1,8 +1,7 @@
-import React, { useContext, useEffect } from 'react';
-import { StyleSheet, Text, View, Platform, Dimensions, TextInput, TouchableOpacity, Button, KeyboardAvoidingView, ScrollView, Alert } from 'react-native';
+import React, { useContext } from 'react';
+import { StyleSheet, Text, View, Platform, Dimensions, TextInput, KeyboardAvoidingView, Image } from 'react-native';
 import { AppContext } from '../context/AppContext';
 import { loginWithUsernamePassword } from '../utils/Firebase';
-import firebase from 'firebase';
 import CustomButton from './CustomButton';
 
 export default function LoginForm(props) {
@@ -24,36 +23,38 @@ export default function LoginForm(props) {
             });
     }
     return (
-            <KeyboardAvoidingView style={styles.loginContainer}>
-                <View style={styles.textStyle}>
-                    <Text style={styles.smallText}>Email: </Text>
-                    <TextInput value={state.email} 
-                                style={styles.textInput}
-                                multiline={false} 
-                                onChangeText={value => setContext(state => ({...state, email: value}))} 
-                    />
-                </View>
-                <View style={styles.textStyle}>
-                    <Text style={styles.smallText}>Password: </Text>
-                    <TextInput value={state.password} 
-                                style={styles.textInput}
-                                onChangeText={value => setContext(state => ({...state, password: value}))}
-                                textContentType={'password'} 
-                                multiline={false} 
-                                secureTextEntry={true} 
-                    />
-                </View>
-                <View style={styles.textStyle}>
-                    <CustomButton
-                        onPress={loginUser}
-                        title='Login'
-                        color='white'
-                        disabled={false}
-                        isNotSignRegister={false}
-                    />
-                </View>
-            </KeyboardAvoidingView>
-  );
+        <KeyboardAvoidingView style={styles.loginContainer}>
+            <Image source={state.logo} />
+            <View style={styles.textStyle}>
+                <Text style={styles.smallText}>Email: </Text>
+                <TextInput value={state.email} 
+                            style={styles.textInput}
+                            multiline={false} 
+                            onChangeText={value => setContext(state => ({...state, email: value}))} 
+                />
+            </View>
+            <View style={styles.textStyle}>
+                <Text style={styles.smallText}>Password: </Text>
+                <TextInput value={state.password} 
+                            style={styles.textInput}
+                            onChangeText={value => setContext(state => ({...state, password: value}))}
+                            textContentType={'password'} 
+                            multiline={false} 
+                            secureTextEntry={true} 
+                />
+            </View>
+            <View style={styles.textStyle}>
+                <CustomButton
+                    onPress={loginUser}
+                    title='Login'
+                    color='white'
+                    bgColor={'#222e61'}
+                    disabled={false}
+                    isNotSignRegister={false}
+                />
+            </View>
+        </KeyboardAvoidingView>
+    );
 }
 
 const styles = StyleSheet.create({
@@ -69,7 +70,7 @@ const styles = StyleSheet.create({
     opacity: 1
   },
   textStyle: {
-    color: '#000',
+    color: '#222e61',
     paddingBottom: 25,
     ...Platform.select({
       ios: {
@@ -85,7 +86,7 @@ const styles = StyleSheet.create({
   loginContainer: {
     display: 'flex',
     justifyContent: 'center', 
-    alignSelf: 'center'
+    alignItems: 'center'
   },
   imageContainer: {
     flex: 1,
@@ -100,9 +101,10 @@ const styles = StyleSheet.create({
     minWidth: 100,
     borderWidth: 2,
     borderRadius: 3,
+    flexGrow: 100,
     borderColor: '#000',
     color: '#fff',
-    backgroundColor: '#000'
+    backgroundColor: '#c01b33'
   }, 
   small: {
     fontSize: 14,
@@ -120,8 +122,8 @@ const styles = StyleSheet.create({
     fontSize: 14, fontWeight: 'bold',
   },
   textInput: {
-    backgroundColor: '#000', 
-    color: 'white',
+    backgroundColor: '#fff', 
+    color: '#222e61',
     height: 40,
     width: 300,
     marginTop: 20, 
@@ -130,7 +132,7 @@ const styles = StyleSheet.create({
     alignSelf: 'center',
     borderStyle: 'solid',
     borderWidth: 2,
-    borderColor: '#fff',
+    borderColor: '#222e61',
     borderRadius: 10,
   },
 });

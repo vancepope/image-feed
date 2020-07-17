@@ -1,5 +1,5 @@
 import React, { useContext } from 'react';
-import { StyleSheet, View, ScrollView, ActivityIndicator, Dimensions } from 'react-native';
+import { StyleSheet, View, Dimensions } from 'react-native';
 import { AppContext } from '../context/AppContext';
 import LoginForm from './LoginForm';
 
@@ -20,7 +20,12 @@ const styles = StyleSheet.create({
     justifyContent: 'center', 
     alignSelf: 'center',
     marginTop: '200',
-    backgroundColor: 'rgba(0,0,0,0.2)',
+  },
+  image: {
+    width: Math.round(Dimensions.get('window').width), 
+    height: Math.round(Dimensions.get('window').height), 
+    justifyContent: 'center',
+    resizeMode: 'cover',
   },
   titleContainer: {
     paddingTop: 35, 

@@ -2,11 +2,11 @@ import React, { useContext } from 'react';
 import{ StyleSheet, Text, TouchableOpacity, ActivityIndicator } from 'react-native'; 
 import { AppContext } from '../context/AppContext';
 
-export default function CustomButton({ color, title, onPress, disabled, isNotSignRegister }) { 
+export default function CustomButton({ color, title, onPress, disabled, isNotSignRegister, bgColor }) { 
     const [state, setContext] = useContext(AppContext);
     return (
         <TouchableOpacity
-            style={[styles.button, { borderColor: color }]} 
+            style={[styles.button, { borderColor: bgColor, backgroundColor: bgColor }]} 
             onPress={onPress}
             disabled={disabled}
         > 

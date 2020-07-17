@@ -99,7 +99,7 @@ const tabNavigator = createBottomTabNavigator({
     activeTintColor: '#004f5a',
     pressColor: '#004f5a',
     style: {
-      backgroundColor: '#000',
+      backgroundColor: '#222e61',
     }
   }
 });

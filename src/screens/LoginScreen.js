@@ -1,11 +1,8 @@
 import * as WebBrowser from 'expo-web-browser';
 import React, { useContext } from 'react';
-import { Alert, SafeAreaView } from 'react-native';
+import { SafeAreaView } from 'react-native';
 import { AppContext } from '../context/AppContext';
 import {
-  Image,
-  Platform,
-  ScrollView,
   StyleSheet,
   View,
   Dimensions,
@@ -33,7 +30,7 @@ const styles = StyleSheet.create({
         height: Math.round(Dimensions.get('window').height), 
         alignItems: 'center',
         justifyContent: 'center', 
-        backgroundColor: '#000', 
+        backgroundColor: '#c01b33', 
         paddingHorizontal: 50,
-      },
+    },
 });

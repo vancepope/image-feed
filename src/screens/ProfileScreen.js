@@ -1,9 +1,6 @@
 import React, { useContext } from 'react';
-import { ScrollView, StyleSheet, Image, View, Dimensions, Text, SafeAreaView } from 'react-native';
-import { AuthSession } from 'expo';
+import { ScrollView, StyleSheet, View, Dimensions, Text, SafeAreaView } from 'react-native';
 import { AppContext } from '../context/AppContext';
-import { TouchableOpacity } from 'react-native-gesture-handler';
-import { Ionicons } from '@expo/vector-icons';
 
 export default function ProfileScreen(props) {
   const [state, setState] = useContext(AppContext);
@@ -21,7 +18,7 @@ export default function ProfileScreen(props) {
 ProfileScreen.navigationOptions = {
     headerTitle: 'Sharp Shooter',
     headerStyle: {
-      backgroundColor: '#000'
+      backgroundColor: '#c01b33'
     },
     headerTintColor: '#fff',
     safeAreaInsets: { top: 50 },

@@ -15,37 +15,37 @@ export default function LoginForm(props) {
         // }
     }
     return (
-            <View>
-                <View style={{flex: 1, flexDirection: 'column', flexBasis: '100%'}}>
-                    <Text>Email: </Text>
-                    <TextInput value={state.email} 
-                               style={styles.textInput}
-                               multiline={false} 
-                               onChangeText={value => setContext(state => ({...state, email: value}))} 
-                    />
-                </View>
-                <View style={{flex: 1, flexDirection: 'column', flexBasis: '100%'}}>
-                    <Text>Password: </Text>
-                    <TextInput value={state.password} 
-                               style={styles.textInput}
-                               onChangeText={value => setContext(state => ({...state, password: value}))}
-                               textContentType={'password'} 
-                               multiline={false} 
-                               secureTextEntry={true} 
-                    />
-                </View>
-                <View style={{flex: 1, flexDirection: 'column', flexBasis: '100%'}}>
-                    <Button 
-                        style={styles.button}
-                        onPress={signUp}
-                        title='Register'
-                        borderColor='#000'
-                        borderRadius='2'
-                        textStyle={styles.buttonText}
-                    />
-                </View>
+        <View>
+            <View style={{flex: 1, flexDirection: 'column', flexBasis: '100%'}}>
+                <Text>Email: </Text>
+                <TextInput value={state.email} 
+                            style={styles.textInput}
+                            multiline={false} 
+                            onChangeText={value => setContext(state => ({...state, email: value}))} 
+                />
             </View>
-  );
+            <View style={{flex: 1, flexDirection: 'column', flexBasis: '100%'}}>
+                <Text>Password: </Text>
+                <TextInput value={state.password} 
+                            style={styles.textInput}
+                            onChangeText={value => setContext(state => ({...state, password: value}))}
+                            textContentType={'password'} 
+                            multiline={false} 
+                            secureTextEntry={true} 
+                />
+            </View>
+            <View style={{flex: 1, flexDirection: 'column', flexBasis: '100%'}}>
+                <Button 
+                    style={styles.button}
+                    onPress={signUp}
+                    title='Register'
+                    borderColor='#000'
+                    borderRadius='2'
+                    textStyle={styles.buttonText}
+                />
+            </View>
+        </View>
+    );
 }
 
 const styles = StyleSheet.create({

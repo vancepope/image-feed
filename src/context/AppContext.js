@@ -1,5 +1,5 @@
 import React, { useState, createContext } from 'react';
-import firebase from 'firebase';
+
 const AppContext = createContext([{}, () => {}]);
 const AppProvider = (props) => {
 	const [state, setState] = useState({
@@ -12,10 +12,11 @@ const AppProvider = (props) => {
         isAuthenticated: false,
         user: {},
         userPromiseData: {},
+        logo: require('../../assets/img/ssb-bg-logo.png'),
   });
   return (
-    <AppContext.Provider value={[state, setState]}>
-      {props.children}
+    <AppContext.Provider value={ [state, setState] }>
+      { props.children }
     </AppContext.Provider>
   );
 }

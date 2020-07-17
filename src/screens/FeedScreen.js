@@ -1,20 +1,16 @@
 import * as WebBrowser from 'expo-web-browser';
 import React, { useContext } from 'react';
-import { Alert, SafeAreaView } from 'react-native';
+import { SafeAreaView } from 'react-native';
 import { AppContext } from '../context/AppContext';
 import {
-  Image,
-  Platform,
   ScrollView,
   StyleSheet,
   View,
-  Dimensions,
 } from 'react-native';
 import Home from '../components/Home';
 
 export default function FeedScreen(props) {
   const [state, setState] = useContext(AppContext);
-
   return (
     <SafeAreaView>
         <ScrollView style={styles.container}>
@@ -28,14 +24,14 @@ export default function FeedScreen(props) {
 FeedScreen.navigationOptions = {
   headerTitle: 'Sharp Shooter',
   headerStyle: {
-    backgroundColor: '#000'
+    backgroundColor: '#c01b33'
   },
   headerTintColor: '#fff',
   safeAreaInsets: { top: 50 },
 };
 const styles = StyleSheet.create({
-    container: {
-      marginLeft: 0,
-      marginTop: 24,
-    },
+  container: {
+    marginLeft: 0,
+    marginTop: 24,
+  },
 });

@@ -1,8 +1,7 @@
 import { AppLoading } from 'expo';
-import { Asset } from 'expo-asset';
 import * as Font from 'expo-font';
-import React, { useState, useContext, useEffect } from 'react';
-import { Platform, StatusBar, StyleSheet, View, YellowBox } from 'react-native';
+import React, { useState } from 'react';
+import { Platform, StatusBar, StyleSheet, View } from 'react-native';
 import { Ionicons } from '@expo/vector-icons';
 import AppNavigator from './src/navigation/AppNavigator';
 import { AppProvider } from './src/context/AppContext';
@@ -64,7 +63,7 @@ const styles = StyleSheet.create({
 const navigationOptions = {
   title: "Home",
   headerStyle: {
-    backgroundColor: "#000"
+    backgroundColor: "#c01b33"
   },
   headerTintColor: "#fff",
   headerTitleStyle: {

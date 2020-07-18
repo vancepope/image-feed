@@ -43,10 +43,10 @@ export async function updateUserProfile(info) {
     });
 }
 export async function registerUser(email, password) {
-    let result = await firebase.auth().createUserWithEmailAndPassword(email, password).catch((error) => {
+    let response = await firebase.auth().createUserWithEmailAndPassword(email, password).catch((error) => {
         return error;
     });
-    return result;
+    return response;
 }
 export async function addUserInfo(user, info) {
     if (user != null) {

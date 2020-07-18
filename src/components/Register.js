@@ -1,20 +1,31 @@
 import React, { useContext } from 'react';
-import { StyleSheet, View, ScrollView } from 'react-native';
+import { StyleSheet, View, Dimensions } from 'react-native';
 import { AppContext } from '../context/AppContext';
+import RegisterForm from './RegisterForm';
 
-export default function Register() {
+export default function Login(props) {
     const [state, setContext] = useContext(AppContext);
+    const { navigation } = props;
     return (
-        <View style={styles.appContainer}>
-        <ScrollView style={styles.timerList}>
-        </ScrollView>
+        <View styles={styles.appContainer}>
+            <RegisterForm navigation={navigation} /> 
         </View>
     );
 }
 
 const styles = StyleSheet.create({ 
   appContainer: {
-    flex: 1, 
+    flex: 1,
+    flexGrow: 1,
+    justifyContent: 'center', 
+    alignSelf: 'center',
+    marginTop: '200',
+  },
+  image: {
+    width: Math.round(Dimensions.get('window').width), 
+    height: Math.round(Dimensions.get('window').height), 
+    justifyContent: 'center',
+    resizeMode: 'cover',
   },
   titleContainer: {
     paddingTop: 35, 
@@ -29,7 +40,17 @@ const styles = StyleSheet.create({
     textAlign: 'center',
     color: '#fff'
   },
-  timerList: {
-    paddingBottom: 15,
+  textInput: {
+    backgroundColor: '#666', 
+    color: 'white',
+    height: 40,
+    width: 300,
+    marginTop: 20, 
+    marginHorizontal: 20, 
+    paddingHorizontal: 10, 
+    alignSelf: 'center',
+    borderStyle: 'solid',
+    borderColor: '#fff',
+    borderRadius: 10,
   },
 });

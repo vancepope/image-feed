@@ -1,17 +1,18 @@
 import React, { Component } from "react";
 import { createStackNavigator } from "react-navigation-stack";
-//import RegisterScreen from "../screens/RegisterScreen";
+import RegisterScreen from "../screens/RegisterScreen";
 
 
 const RegisterNavigator = createStackNavigator({
-    Regiter: {
-        screen: RegisterScreen
-	}
+    Register: RegisterScreen
 });
 
 RegisterNavigator.navigationOptions = {
-    headerMode: null,
-    headerShown: false
+  headerMode: 'screen',
+  headerStyle: {
+      backgroundColor: '#c01b33',
+      color: '#fff',
+  },
 };
 RegisterNavigator.path = '';
 

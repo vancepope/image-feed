@@ -10,27 +10,23 @@ export default function LoginForm(props) {
         props.navigation.navigate('Register');
     }
     function validateEmail() {
-        let emailRegex = new RegExp('/^[a-zA-Z0-9._-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,4}$/');
-        if (!emailRegex.exec(state.email)) {
-            setContext(state => ({...state, loading: false, isEmailNotValid: true}));
+        let emailRegex = new RegExp(/^[a-zA-Z0-9._-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,4}$/);
+        if (emailRegex.test(state.email)) {
+          setContext(state => ({...state, isEmailValid: true}));
         } else {
-            setContext(state => ({...state, isEmailNotValid: false}));
+          setContext(state => ({...state, loading: false, isEmailValid: false}));
         }
     }
     async function loginUser() {
         setContext(state => ({...state, loading: true}));
-        validateEmail();
-        if (state.isEmailNotValid) {
-            return;
-        } else {
-            await loginWithUsernamePassword(state.email, state.password)
+        if (state.isEmailValid) {
+          await loginWithUsernamePassword(state.email, state.password)
                 .then((response) => {
                     if (response && response.user) {
                         setContext(state => ({...state, data: response.user, loading: false, userName: '', password: ''}));
                         props.navigation.navigate('Feed');
                     } else {
                         setContext(state => ({...state, loading: false}));
-                        alert(`Error: Please try again`,'Ok')
                     }
                 }).catch(err => {
                     setContext(state => ({...state, loading: false, password: ''}));
@@ -39,48 +35,47 @@ export default function LoginForm(props) {
         }
     }
     return (
-        <KeyboardAvoidingView style={styles.loginContainer}>
-            <Image source={state.logo} />
-            <View style={styles.textStyle}>
-                <Text style={styles.smallText}>Email: </Text>
-                <TextInput value={state.email} 
-                            style={styles.textInput}
-                            multiline={false} 
-                            onChangeText={value => setContext(state => ({...state, email: value}))} 
-                />
-                {
-                    state.isEmailNotValid && <Text style={styles.errorText}>{state.emailNotValid}</Text>
-                }
-            </View>
-            <View style={styles.textStyle}>
-                <Text style={styles.smallText}>Password: </Text>
-                <TextInput value={state.password} 
-                            style={styles.textInput}
-                            onChangeText={value => setContext(state => ({...state, password: value}))}
-                            textContentType={'password'} 
-                            multiline={false} 
-                            secureTextEntry={true} 
-                />
-            </View>
-            <View style={[styles.textStyle, styles.buttonGroup]}>
-                <CustomButton
-                    onPress={loginUser}
-                    title='Login'
-                    color='white'
-                    bgColor={'#222e61'}
-                    disabled={false}
-                    isNotSignRegister={false}
-                />
-                <CustomButton
-                    onPress={goToRegisterScreen}
-                    title='Register'
-                    color='white'
-                    bgColor={'#222e61'}
-                    disabled={false}
-                    isNotSignRegister={false}
-                />
-            </View>
-        </KeyboardAvoidingView>
+      <View style={[styles.loginContainer, styles.textStyle]}>
+        <View style={styles.viewStyle}>
+          <Text style={styles.smallText}>Email <Text style={styles.required}>*</Text></Text>
+          <TextInput value={state.email} 
+                      style={styles.textInput}
+                      multiline={false}
+                      onBlur={validateEmail}
+                      onChangeText={value => setContext(state => ({...state, email: value}))} 
+          />
+          {
+              !state.isEmailValid && <Text style={styles.errorText}>{state.emailNotValid}</Text>
+          }
+        </View>
+        <View style={styles.viewStyle}>
+          <Text style={styles.smallText}>Password <Text style={styles.required}>*</Text></Text>
+          <TextInput value={state.password} 
+                      style={styles.textInput}
+                      onChangeText={value => setContext(state => ({...state, password: value}))}
+                      textContentType={'password'} 
+                      multiline={false} 
+                      secureTextEntry={true} 
+          />
+        </View>
+        <View style={styles.viewStyle}>
+          <Text style={styles.smallText}><Text style={styles.required}>*</Text> Required field</Text>
+        </View>
+        <View style={styles.buttonGroup}>
+            <CustomButton
+                onPress={loginUser}
+                title='Login'
+                color='white'
+                bgColor={'#222e61'}
+                disabled={(state.email.length === 0 || state.password.length <= 5) ? true : false}
+                isNotSignRegister={false}
+            />
+        </View>
+        <View style={{ flexDirection:"row"}}>
+          <Text style={styles.smallText}>Don't have an account? </Text>
+          <Text onPress={goToRegisterScreen} style={styles.signUpLink}>Sign Up</Text>
+        </View>
+      </View>
     );
 }
 
@@ -91,14 +86,34 @@ const styles = StyleSheet.create({
     color: '#fff',
     opacity: 1
   },
+  required: {
+    color: '#222e61',
+    fontWeight: 'bold',
+    fontSize: 20,
+  },
   smallText: {
     fontSize: 18,
     color: '#fff',
     opacity: 1
   },
+  signUpLink: {
+    color: '#222e61',
+    fontSize: 18,
+    fontWeight: 'bold',
+    opacity: 1
+  },
+  errorText: {
+    fontSize: 12,
+    marginHorizontal: 20, 
+    textAlignVertical: 'center',
+    color: '#fff',
+    opacity: 1
+  },
+  viewStyle: {
+    paddingBottom: 25,
+  },
   textStyle: {
     color: '#222e61',
-    paddingBottom: 25,
     ...Platform.select({
       ios: {
         fontFamily: 'AvenirNext-Regular',
@@ -115,38 +130,14 @@ const styles = StyleSheet.create({
     justifyContent: 'center', 
     alignItems: 'center'
   },
-  imageContainer: {
-    flex: 1,
-  }, 
-  image: {
-    width: Math.round(Dimensions.get('window').width), 
-    height: Math.round(Dimensions.get('window').height), 
-    resizeMode: 'cover',
-  },
-  button: {
+  buttonGroup: {
     marginTop: 10,
-    minWidth: 100,
-    borderWidth: 2,
-    borderRadius: 3,
-    flexGrow: 100,
-    borderColor: '#000',
-    color: '#fff',
-    backgroundColor: '#c01b33'
-  }, 
-  small: {
-    fontSize: 14,
-    padding: 5,
-  },
-  large: {
-    fontSize: 16,
-    padding: 10,
+    width: 300,
+    marginBottom: 20,
   },
   buttonText: {
     textAlign: 'center',
     fontWeight: 'bold', 
-  },
-  title: {
-    fontSize: 14, fontWeight: 'bold',
   },
   textInput: {
     backgroundColor: '#fff', 
@@ -162,9 +153,4 @@ const styles = StyleSheet.create({
     borderColor: '#222e61',
     borderRadius: 10,
   },
-  buttonGroup: {
-    flexDirection: 'row', 
-    justifyContent: 'space-between',
-    alignSelf: 'center',
-  }, 
 });

@@ -1,31 +1,40 @@
 import React, { useContext } from 'react';
-import { StyleSheet, View, Dimensions } from 'react-native';
+import { StyleSheet, View, Dimensions, Image } from 'react-native';
 import { AppContext } from '../context/AppContext';
 import RegisterForm from './RegisterForm';
+import KeyboardShift from './KeyboardShift';
 
-export default function Login(props) {
+export default function Register(props) {
     const [state, setContext] = useContext(AppContext);
     const { navigation } = props;
     return (
-        <View styles={styles.appContainer}>
-            <RegisterForm navigation={navigation} /> 
-        </View>
+      <KeyboardShift>
+        {() => (
+          <View>
+              <View style={styles.imageContainer}>
+                <Image source={state.logo} />
+              </View>
+              <View style={styles.formContainer}>
+                <RegisterForm navigation={navigation} /> 
+              </View>
+          </View>
+        )}
+      </KeyboardShift>
     );
 }
 
 const styles = StyleSheet.create({ 
-  appContainer: {
+  imageContainer: {
     flex: 1,
-    flexGrow: 1,
-    justifyContent: 'center', 
+    flexDirection: 'column',
     alignSelf: 'center',
-    marginTop: '200',
+    marginTop: 100
   },
-  image: {
-    width: Math.round(Dimensions.get('window').width), 
-    height: Math.round(Dimensions.get('window').height), 
-    justifyContent: 'center',
-    resizeMode: 'cover',
+  formContainer: {
+    flex: 1,
+    flexDirection: 'column',
+    alignSelf: 'center',
+    marginBottom: 100
   },
   titleContainer: {
     paddingTop: 35, 

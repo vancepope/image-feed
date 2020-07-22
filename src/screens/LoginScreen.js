@@ -14,9 +14,7 @@ export default function LoginScreen(props) {
 
   return (
     <SafeAreaView style={styles.container}>
-        <View>
-            <Login {...props}/>
-        </View>
+      <Login {...props}/>
     </SafeAreaView>
   );
 }

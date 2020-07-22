@@ -19,7 +19,7 @@ const AppProvider = (props) => {
         passwordError: 'Please make sure both passwords match.',
         isPasswordError: false,
         emailNotValid: 'Please enter a valid email address.',
-        isEmailNotValid: false,
+        isEmailValid: true,
   });
   return (
     <AppContext.Provider value={ [state, setState] }>

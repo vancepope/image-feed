@@ -14,17 +14,13 @@ export default function RegisterScreen(props) {
 
   return (
     <SafeAreaView style={styles.container}>
-        <View>
-            <Register {...props}/>
-        </View>
+      <Register {...props}/>
     </SafeAreaView>
   );
 }
 RegisterScreen.navigationOptions = {
-  headerMode: 'screen',
-  headerStyle: {
-      backgroundColor: '#c01b33',
-  },
+  headerMode: 'none',
+  headerShown: false
 };
 const styles = StyleSheet.create({
     container: {

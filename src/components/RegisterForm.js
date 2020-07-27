@@ -32,76 +32,76 @@ export default function RegisterForm(props) {
         validatePassword();
         validateEmail();
         if (!state.isPasswordError || !state.isWeakPassword || !state.isEmailNotValid) {
-          await registerUser(state.email, state.password)
-              .then((response) => {
-                  if (response && response.user) {
-                      setContext(state => ({...state, data: response.user, loading: false, userName: '', password: ''}));
-                      props.navigation.navigate('Feed');
-                  } else {
-                      setContext(state => ({...state, loading: false, password: '', confirmedPassword: ''}));
-                      alert(`Error: Please try again`,'Ok')
-                  }
-              }).catch(err => {
-                  setContext(state => ({...state, loading: false, password: ''}));
-                  alert(`${err.message}`,'Ok')
-              });
+            await registerUser(state.email, state.password)
+                .then((response) => {
+                    if (response && response.user) {
+                        setContext(state => ({...state, data: response.user, loading: false, userName: '', password: ''}));
+                        props.navigation.navigate('Feed');
+                    } else {
+                        setContext(state => ({...state, loading: false, password: '', confirmedPassword: ''}));
+                        alert(`Error: Please try again`,'Ok')
+                    }
+                }).catch(err => {
+                    setContext(state => ({...state, loading: false, password: ''}));
+                    alert(`${err.message}`,'Ok')
+                });
         }
     }
     return (
       <View style={[styles.loginContainer, styles.textStyle]}>
-        <View style={styles.viewStyle}>
-            <Text style={styles.smallText}>Email <Text style={styles.required}>*</Text> </Text>
-            <TextInput value={state.email} 
-                        style={styles.textInput}
-                        multiline={false} 
-                        onBlur={validateEmail}
-                        onChangeText={value => setContext(state => ({...state, email: value}))} 
-            />
-            {
-                state.isEmailNotValid && <Text style={styles.errorText}>{state.emailNotValid}</Text>
-            }
-        </View>
-        <View style={styles.viewStyle}>
-            <Text style={styles.smallText}>Password <Text style={styles.required}>*</Text></Text>
-            <TextInput value={state.password} 
-                        style={styles.textInput}
-                        onChangeText={value => setContext(state => ({...state, password: value}))}
-                        textContentType={'password'} 
-                        onBlur={validatePassword}
-                        multiline={false} 
-                        secureTextEntry={true} 
-            />
-            {
-                state.isWeakPassword && <Text style={styles.errorText}>{state.weakPassword}</Text>
-            }
-        </View>
-        <View style={styles.viewStyle}>
-            <Text style={styles.smallText}>Confirm Password <Text style={styles.required}>*</Text> </Text>
-            <TextInput value={state.confirmedPassword} 
-                        style={styles.textInput}
-                        onChangeText={value => setContext(state => ({...state, confirmedPassword: value}))}
-                        textContentType={'password'} 
-                        onBlur={validatePassword}
-                        multiline={false} 
-                        secureTextEntry={true} 
-            />
-            {
-                state.isPasswordError && <Text style={styles.errorText}>{state.passwordError}</Text>
-            }
-        </View>
-        <View style={styles.viewStyle}>
-          <Text style={styles.smallText}><Text style={styles.required}>*</Text> Required field</Text>
-        </View>
-        <View style={styles.buttonGroup}>
-            <CustomButton
-                onPress={userSignUp}
-                title='Sign Up'
-                color='white'
-                bgColor={'#222e61'}
-                disabled={(state.email.length === 0 || state.password.length <= 5 || state.confirmedPassword.length <=5) ? true : false}
-                isNotSignRegister={false}
-            />
-        </View>
+          <View style={styles.viewStyle}>
+              <Text style={styles.smallText}>Email <Text style={styles.required}>*</Text> </Text>
+              <TextInput value={state.email} 
+                          style={styles.textInput}
+                          multiline={false} 
+                          onBlur={validateEmail}
+                          onChangeText={value => setContext(state => ({...state, email: value}))} 
+              />
+              {
+                  state.isEmailNotValid && <Text style={styles.errorText}>{state.emailNotValid}</Text>
+              }
+          </View>
+          <View style={styles.viewStyle}>
+              <Text style={styles.smallText}>Password <Text style={styles.required}>*</Text></Text>
+              <TextInput value={state.password} 
+                          style={styles.textInput}
+                          onChangeText={value => setContext(state => ({...state, password: value}))}
+                          textContentType={'password'} 
+                          onBlur={validatePassword}
+                          multiline={false} 
+                          secureTextEntry={true} 
+              />
+              {
+                  state.isWeakPassword && <Text style={styles.errorText}>{state.weakPassword}</Text>
+              }
+          </View>
+          <View style={styles.viewStyle}>
+              <Text style={styles.smallText}>Confirm Password <Text style={styles.required}>*</Text> </Text>
+              <TextInput value={state.confirmedPassword} 
+                          style={styles.textInput}
+                          onChangeText={value => setContext(state => ({...state, confirmedPassword: value}))}
+                          textContentType={'password'} 
+                          onBlur={validatePassword}
+                          multiline={false} 
+                          secureTextEntry={true} 
+              />
+              {
+                  state.isPasswordError && <Text style={styles.errorText}>{state.passwordError}</Text>
+              }
+          </View>
+          <View style={styles.viewStyle}>
+            <Text style={styles.smallText}><Text style={styles.required}>*</Text> Required field</Text>
+          </View>
+          <View style={styles.buttonGroup}>
+              <CustomButton
+                  onPress={userSignUp}
+                  title='Sign Up'
+                  color='white'
+                  bgColor={'#222e61'}
+                  disabled={(state.email.length === 0 || state.password.length <= 5 || state.confirmedPassword.length <=5) ? true : false}
+                  isNotSignRegister={false}
+              />
+          </View>
       </View>
     );
 }
@@ -137,7 +137,7 @@ const styles = StyleSheet.create({
     opacity: 1
   },
   viewStyle: {
-    paddingBottom: 25,
+    paddingBottom: 15,
   },
   textStyle: {
     color: '#222e61',
@@ -158,7 +158,6 @@ const styles = StyleSheet.create({
     alignItems: 'center'
   },
   buttonGroup: {
-    marginTop: 10,
     width: 300,
     marginBottom: 20,
   },

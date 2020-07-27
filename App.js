@@ -12,24 +12,23 @@ export default function App(props) {
   if (!isLoadingComplete && !props.skipLoadingScreen) {
     return (
       <AppLoading
-        startAsync={loadResourcesAsync}
-        onError={handleLoadingError}
-        style={styles.container}
-        onFinish={() => handleFinishLoading(setLoadingComplete)}
+      startAsync={loadResourcesAsync}
+      onError={handleLoadingError}
+      style={styles.container}
+      onFinish={() => handleFinishLoading(setLoadingComplete)}
       />
-    );
-  } else {
-    return (
-      <AppProvider>
-        <View style={styles.container}>
-          {Platform.OS === 'ios' && <StatusBar barStyle={styles.container} />}
-          <AppNavigator {...props} />
-        </View>
-      </AppProvider>
+      );
+    } else {
+      return (
+        <AppProvider>
+          <View style={styles.container}>
+            {Platform.OS === 'ios' && <StatusBar barStyle={styles.container} />}
+            <AppNavigator {...props} />
+          </View>
+        </AppProvider>
     );
   }
 }
-
 async function loadResourcesAsync() {
   await Promise.all([
     // Asset.loadAsync([
@@ -41,6 +40,9 @@ async function loadResourcesAsync() {
       // We include SpaceMono because we use it in HomeScreen.js. Feel free to
       // remove this if you are not using it in your app
     }),
+    // Audio.loadAsync(
+    //   require("../../assets/sfx/button.wav")
+    // )
   ]);
 }
 

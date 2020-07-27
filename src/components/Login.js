@@ -1,5 +1,5 @@
 import React, { useContext } from 'react';
-import { StyleSheet, View, Image, Dimensions } from 'react-native';
+import { StyleSheet, View, Image, Text } from 'react-native';
 import { AppContext } from '../context/AppContext';
 import LoginForm from './LoginForm';
 import KeyboardShift from './KeyboardShift';
@@ -14,6 +14,9 @@ export default function Login(props) {
               <View style={styles.imageContainer}>
                 <Image source={state.logo} />
               </View>
+              {
+                state.error && <Text style={styles.errorText}>{state.errorMessage}</Text>
+              }
               <View style={styles.formContainer}>
                 <LoginForm navigation={navigation} /> 
               </View>
@@ -26,15 +29,31 @@ export default function Login(props) {
 const styles = StyleSheet.create({ 
   imageContainer: {
     flex: 1,
+    marginTop: 50,
     flexDirection: 'column',
     alignSelf: 'center',
-    marginTop: 100
   },
   formContainer: {
     flex: 1,
     flexDirection: 'column',
     alignSelf: 'center',
     marginBottom: 100
+  },
+  errorContainer: {
+    flex: 1,
+    flexDirection: 'column',
+    alignSelf: 'center',
+  },
+  errorText: {
+    color: '#fff',
+    height: 60,
+    width: 300,
+    textAlign: 'center',
+    marginBottom: 20,
+    marginTop: 0,
+    marginHorizontal: 20, 
+    paddingHorizontal: 10, 
+    alignSelf: 'center',
   },
   titleContainer: {
     paddingTop: 35, 

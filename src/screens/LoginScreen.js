@@ -1,21 +1,16 @@
 import * as WebBrowser from 'expo-web-browser';
 import React, { useContext } from 'react';
-import { SafeAreaView } from 'react-native';
+import { View, Dimensions, StyleSheet } from 'react-native';
 import { AppContext } from '../context/AppContext';
-import {
-  StyleSheet,
-  View,
-  Dimensions,
-} from 'react-native';
 import Login from '../components/Login';
 
 export default function LoginScreen(props) {
   const [state, setState] = useContext(AppContext);
 
   return (
-    <SafeAreaView style={styles.container}>
+    <View style={styles.container}>
       <Login {...props}/>
-    </SafeAreaView>
+    </View>
   );
 }
 LoginScreen.navigationOptions = {

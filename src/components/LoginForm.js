@@ -1,5 +1,5 @@
 import React, { useContext } from 'react';
-import { StyleSheet, Text, View, Platform, Dimensions, TextInput, KeyboardAvoidingView, Image } from 'react-native';
+import { StyleSheet, Text, View, Platform, TextInput } from 'react-native';
 import { AppContext } from '../context/AppContext';
 import { loginWithUsernamePassword } from '../utils/Firebase';
 import CustomButton from './CustomButton';
@@ -23,14 +23,13 @@ export default function LoginForm(props) {
           await loginWithUsernamePassword(state.email, state.password)
                 .then((response) => {
                     if (response && response.user) {
-                        setContext(state => ({...state, data: response.user, loading: false, userName: '', password: ''}));
+                        setContext(state => ({...state, data: response.user, loading: false, userName: '', password: '', error: false, errorMessage: ''}));
                         props.navigation.navigate('Feed');
                     } else {
-                        setContext(state => ({...state, loading: false}));
+                        setContext(state => ({...state, loading: false, errorMessage: response.message, error: true}));
                     }
                 }).catch(err => {
-                    setContext(state => ({...state, loading: false, password: ''}));
-                    alert(`${err.message}`,'Ok')
+                    setContext(state => ({...state, loading: false, password: '', errorMessage: err.message, error: true}));
                 });
         }
     }

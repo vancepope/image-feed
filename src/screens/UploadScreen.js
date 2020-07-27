@@ -1,23 +1,22 @@
 import React, { useContext } from 'react';
-import { ScrollView, StyleSheet, View, Text, SafeAreaView } from 'react-native';
+import { ScrollView, StyleSheet, View, Text, Platform } from 'react-native';
 import { AppContext } from '../context/AppContext';
 
 export default function UploadScreen(props) {
   const [state, setState] = useContext(AppContext);
   return (
-    <SafeAreaView style={styles.container}>
-        <ScrollView>
-            <View>
-                <Text>Upload</Text>
-            </View>
-        </ScrollView>
-    </SafeAreaView>
+    <ScrollView style={styles.container}>
+        <View>
+            <Text>Upload</Text>
+        </View>
+    </ScrollView>
   );
 }
 UploadScreen.navigationOptions = {
-    headerTitle: 'Sharp Shooter',
-    headerStyle: {
-      backgroundColor: '#c01b33'
+  headerTitle: () => null,
+  headerStyle: {
+    backgroundColor: '#fff',
+    height: Platform.OS === 'ios' ? 44 : 56,
   },
   headerTintColor: '#fff',
     safeAreaInsets: { top: 50 },

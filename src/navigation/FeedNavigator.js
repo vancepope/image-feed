@@ -1,5 +1,5 @@
 import React from 'react';
-import { Platform } from 'react-native';
+import { Platform, StyleSheet } from 'react-native';
 import { createStackNavigator } from 'react-navigation-stack';
 import { createBottomTabNavigator } from 'react-navigation-tabs';
 
@@ -8,9 +8,14 @@ import FeedScreen from '../screens/FeedScreen';
 import ActivityScreen from '../screens/ActivityScreen';
 import ProfileScreen from '../screens/ProfileScreen';
 import UploadScreen from '../screens/UploadScreen';
+import AddButton from '../components/AddButton';
 
 const config = Platform.select({
   web: { headerMode: 'screen' },
+  default: {},
+});
+const addConfig = Platform.select({
+  web: { headerMode: 'none' },
   default: {},
 });
 
@@ -26,7 +31,7 @@ FeedStack.navigationOptions = {
   tabBarIcon: ({ focused }) => (
     <TabBarIcon
       focused={focused}
-      source={require('../../assets/img/icons/timeline.png')}
+      source={require('../../assets/img/icons/033-help.png')}
       name={
         Platform.OS === 'ios'
           ? `ios-information-circle${focused ? '' : '-outline'}`
@@ -61,11 +66,31 @@ const UploadStack = createStackNavigator(
   config
 );
 
+const AddStack = createStackNavigator(
+  {
+    Add: () => null,
+  },
+  addConfig,
+  
+);
+
+AddStack.navigationOptions = {
+  screen: () => null,
+  tabBarOnPress: () => null,
+  tabBarIcon: <AddButton />,
+  headerMode: 'none',
+  headerShown: false,
+  
+};
+
 UploadStack.navigationOptions = {
   tabBarLabel: '',
   tabBarIcon: ({ focused }) => (
     <TabBarIcon focused={focused} source={require('../../assets/img/icons/compose.png')} name={Platform.OS === 'ios' ? 'ios-options' : 'md-options'} />
   ),
+  headerStyle: {
+    backgroundColor: '#c01b33',
+  }
 };
 
 UploadStack.path = '';
@@ -89,18 +114,22 @@ const ProfileStack = createStackNavigator(
 const tabNavigator = createBottomTabNavigator({
   FeedStack,
   UploadStack,
+  AddStack,
   ActivityStack,
   ProfileStack,
 }, {
   tabBarOptions: {
     indicatorStyle: {
-        backgroundColor: '#004f5a',
+        backgroundColor: '#fff',
+        height: 25
     },
-    activeTintColor: '#004f5a',
+    activeTintColor: '#fff',
     pressColor: '#004f5a',
     style: {
-      backgroundColor: '#222e61',
-    }
+      backgroundColor: '#fff',
+      height: 40
+    },
+    showLabel: false,
   }
 });
 

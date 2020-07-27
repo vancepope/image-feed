@@ -1,4 +1,5 @@
 import React, { useState, createContext } from 'react';
+import { Animated } from 'react-native'; 
 
 const AppContext = createContext([{}, () => {}]);
 const AppProvider = (props) => {
@@ -6,7 +7,7 @@ const AppProvider = (props) => {
         isOpen: false,
         loading: false,
         error: false,
-        focused: false,
+        errorMessage: '',
         email: '',
         password: '',
         confirmedPassword: '',
@@ -20,6 +21,9 @@ const AppProvider = (props) => {
         isPasswordError: false,
         emailNotValid: 'Please enter a valid email address.',
         isEmailValid: true,
+        shift: new Animated.Value(0),
+        mode: new Animated.Value(0),
+        buttonSize: new Animated.Value(1),
   });
   return (
     <AppContext.Provider value={ [state, setState] }>
